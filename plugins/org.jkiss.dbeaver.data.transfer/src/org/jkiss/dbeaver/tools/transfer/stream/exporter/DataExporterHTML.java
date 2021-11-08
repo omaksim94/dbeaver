@@ -38,25 +38,7 @@ import java.util.Map;
  * HTML Exporter
  */
 public class DataExporterHTML extends StreamExporterAbstract {
-	public enum BackgroundColor {
-    	WHITE("FFFFFF"),
-    	BLACK("000000"),
-    	RED("FF0000"),
-    	GREEN("00FF00"),
-    	BLUE("0000FF");
-    	
-    	private final String colorCode;
-    	
-    	BackgroundColor(String colorCode) {
-    		this.colorCode = colorCode;
-    	}
-    	
-    	public String getColorCode() {
-    		return colorCode;
-    	}
-	}
-	
-	private static final String BACKGROUND_COLOR = "backgroundColor";
+
     private static final String PROP_HEADER = "tableHeader";
     private static final String PROP_COLUMN_HEADERS = "columnHeaders";
 
@@ -68,8 +50,7 @@ public class DataExporterHTML extends StreamExporterAbstract {
 
     private boolean outputHeader = true;
     private boolean outputColumnHeaders = true;
-    private String backgroundColor = BackgroundColor.WHITE.getColorCode();
-    
+
     @Override
     public void init(IStreamDataExporterSite site) throws DBException {
         super.init(site);
@@ -77,8 +58,6 @@ public class DataExporterHTML extends StreamExporterAbstract {
         Map<String, Object> properties = site.getProperties();
         outputHeader = CommonUtils.getBoolean(properties.get(PROP_HEADER), outputHeader);
         outputColumnHeaders = CommonUtils.getBoolean(properties.get(PROP_COLUMN_HEADERS), outputColumnHeaders);
-        backgroundColor = (String) properties.get(BACKGROUND_COLOR);
-        backgroundColor = BackgroundColor.valueOf(backgroundColor.toUpperCase().replaceAll("\\s", "")).getColorCode();
     }
 
     @Override
@@ -106,7 +85,7 @@ public class DataExporterHTML extends StreamExporterAbstract {
             "border: thin solid #6495ed;" +
 //              "width: 50%;" +
             "padding: 5px;" +
-            "background-color: #" + backgroundColor + ";}" +
+            "background-color: #D0E3FA;}" +
             "td{font-family: sans-serif;" +
             "border: thin solid #6495ed;" +
 //              "width: 50%;" +
